@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:1a336748bdddf5013722b29362426b7c@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260821T170000
 DTEND;TZID=America/Los_Angeles:20260821T174500
 SUMMARY:GAME: UCLA Bruins @ 49ers (Away)
@@ -35,16 +35,16 @@ DESCRIPTION:FNL page gives no kickoff time, only result -- Final W 28-0. Start t
 END:VEVENT
 BEGIN:VEVENT
 UID:40ab9bd567860709759c2dff64e181ac@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260821T160000
 DTEND;TZID=America/Los_Angeles:20260821T170000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:CSULB Allen Field 2, 1250 Bellflower Blvd, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
 UID:34763a7b9f2385f95482165d589ef175@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260828T172000
 DTEND;TZID=America/Los_Angeles:20260828T181000
 SUMMARY:GAME: UCLA Bruins @ Boston College (Away)
@@ -53,25 +53,25 @@ DESCRIPTION:end time estimated (45 min)
 END:VEVENT
 BEGIN:VEVENT
 UID:a748ce772f843b63b8be464a98a51341@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260828T162000
 DTEND;TZID=America/Los_Angeles:20260828T172000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:Millikan HS Turf 1, 2800 Snowden Ave, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
-UID:1a9bc05e6497e3be85db43117180366e@uclabruins
-DTSTAMP:20260829T222021Z
+UID:8ad28c600ee0b9c8c16ae583670ea8f8@uclabruins
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260903T170000
 DTEND;TZID=America/Los_Angeles:20260903T180000
-SUMMARY:Practice
+SUMMARY:UCLA Bruins Practice
 LOCATION:Whaley Park, 5620 Atlantic Ave, Long Beach, CA
 DESCRIPTION:Normal practice spot.
 END:VEVENT
 BEGIN:VEVENT
 UID:67c9f3214adac50601e6cb8137d4b976@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260904T163000
 DTEND;TZID=America/Los_Angeles:20260904T171500
 SUMMARY:GAME: UCLA Bruins vs Lady Raiders (Home)
@@ -80,25 +80,25 @@ DESCRIPTION:end time estimated (45 min)
 END:VEVENT
 BEGIN:VEVENT
 UID:487d4d50d2e70ca30c35880da54a23af@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260904T153000
 DTEND;TZID=America/Los_Angeles:20260904T163000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:Millikan HS Turf 2, 2800 Snowden Ave, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
-UID:7e4113fdb7fb3866e7a24719ed4ca8c7@uclabruins
-DTSTAMP:20260829T222021Z
+UID:5d13ccdf4833754f0dcd84ab62153591@uclabruins
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260913T120000
 DTEND;TZID=America/Los_Angeles:20260913T130000
-SUMMARY:Picture Day
+SUMMARY:UCLA Bruins Picture Day
 LOCATION:TBD
 DESCRIPTION:Location not yet provided by coach/league -- confirm and update.
 END:VEVENT
 BEGIN:VEVENT
 UID:e93f52e96c3fb6cb2ae467754e9ebe32@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260918T163000
 DTEND;TZID=America/Los_Angeles:20260918T171500
 SUMMARY:GAME: UCLA Bruins vs Lady Seahawks (Home)
@@ -107,16 +107,16 @@ DESCRIPTION:end time estimated (45 min)
 END:VEVENT
 BEGIN:VEVENT
 UID:b698c811c5f3d4c69d08d159d4010d73@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260918T153000
 DTEND;TZID=America/Los_Angeles:20260918T163000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:Millikan HS Turf 1, 2800 Snowden Ave, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
 UID:829b0691bbf068f0efc22a85bf322b6d@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260925T195000
 DTEND;TZID=America/Los_Angeles:20260925T203500
 SUMMARY:GAME: UCLA Bruins vs Lady Chargers (Home)
@@ -125,16 +125,16 @@ DESCRIPTION:end time estimated (45 min)
 END:VEVENT
 BEGIN:VEVENT
 UID:7d99cd49b4da084bb2355d4fca547315@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20260925T185000
 DTEND;TZID=America/Los_Angeles:20260925T195000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:CSULB Allen Field 4, 1250 Bellflower Blvd, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
 UID:44bdf3ea9a32c92d097808868cafeab1@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261002T163000
 DTEND;TZID=America/Los_Angeles:20261002T171500
 SUMMARY:GAME: UCLA Bruins vs FIU (Home)
@@ -143,16 +143,16 @@ DESCRIPTION:end time estimated (45 min); doubleheader day with Rams game below
 END:VEVENT
 BEGIN:VEVENT
 UID:1061451389be6d5ccb7f432a1cd329bf@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261002T153000
 DTEND;TZID=America/Los_Angeles:20261002T163000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:Millikan HS Turf 1, 2800 Snowden Ave, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
 UID:9ebb8091746640aa8daa6ab5cb3f12c9@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261002T172000
 DTEND;TZID=America/Los_Angeles:20261002T181000
 SUMMARY:GAME: UCLA Bruins vs Rams (Home)
@@ -161,16 +161,16 @@ DESCRIPTION:end time estimated (45 min); doubleheader day with FIU game above
 END:VEVENT
 BEGIN:VEVENT
 UID:5cbed9b6b0049168a3ea9e821b82791e@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261002T162000
 DTEND;TZID=America/Los_Angeles:20261002T172000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:Millikan HS BB Field 7, 2800 Snowden Ave, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
 UID:cf238c0afd416981d018d0fac9b77493@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261009T163000
 DTEND;TZID=America/Los_Angeles:20261009T171500
 SUMMARY:GAME: UCLA Bruins vs Long Beach St (Home)
@@ -179,46 +179,46 @@ DESCRIPTION:end time estimated (45 min)
 END:VEVENT
 BEGIN:VEVENT
 UID:ef77bd00372c36d7c4f6ab127ab5a669@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261009T153000
 DTEND;TZID=America/Los_Angeles:20261009T163000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:Millikan HS BB Field 9, 2800 Snowden Ave, Long Beach, CA
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
-UID:efb83293fcd0f1442febb4499ac61d93@uclabruins
-DTSTAMP:20260829T222021Z
+UID:3a008fcdece6a27929f33acdaf04a269@uclabruins
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261016T163000
 DTEND;TZID=America/Los_Angeles:20261016T171500
-SUMMARY:TENTATIVE: Playoffs
+SUMMARY:TENTATIVE: UCLA Bruins Playoffs
 LOCATION:TBD
 DESCRIPTION:TENTATIVE -- date, time, and location not yet confirmed. Placeholder time shown, do not treat as final.
 END:VEVENT
 BEGIN:VEVENT
 UID:8b862bede0997771bdd34a3fbcc2f961@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261016T153000
 DTEND;TZID=America/Los_Angeles:20261016T163000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:TBD
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT
 BEGIN:VEVENT
-UID:ee3eb344dcb92099e26bc551c6448205@uclabruins
-DTSTAMP:20260829T222021Z
+UID:16c703223cd9922213951f7a2aa9dd6e@uclabruins
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261030T163000
 DTEND;TZID=America/Los_Angeles:20261030T171500
-SUMMARY:TENTATIVE: Championship Playoffs
+SUMMARY:TENTATIVE: UCLA Bruins Championship Playoffs
 LOCATION:TBD
 DESCRIPTION:TENTATIVE -- date, time, and location not yet confirmed. Placeholder time shown, do not treat as final.
 END:VEVENT
 BEGIN:VEVENT
 UID:fce783a6fdfceeb583deb862e14bcb81@uclabruins
-DTSTAMP:20260829T222021Z
+DTSTAMP:20260829T222358Z
 DTSTART;TZID=America/Los_Angeles:20261030T153000
 DTEND;TZID=America/Los_Angeles:20261030T163000
-SUMMARY:Arrival Time - Be at the field
+SUMMARY:UCLA Bruins Arrival Time - Be at the field
 LOCATION:TBD
 DESCRIPTION:Everyone needs to be at the field 1 hour before kickoff.
 END:VEVENT

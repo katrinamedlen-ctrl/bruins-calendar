@@ -1,0 +1,1250 @@
+<title>Compass Points</title>
+<style>
+:root{
+  --ink:#1c2b33;
+  --paper:#eef1ec;
+  --paper-raised:#e1e6dd;
+  --paper-line:#c9d1c5;
+  --contour:#5b7065;
+  --accent:#8f5a26;
+  --accent-soft:#e4d3b8;
+  --good:#3f7d5c;
+  --good-soft:#d7e8dd;
+  --warn:#a67a1f;
+  --warn-soft:#f1e2bd;
+  --critical:#a8433a;
+  --critical-soft:#f2dad6;
+  --shadow: 0 1px 2px rgba(28,43,51,.06), 0 6px 20px rgba(28,43,51,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e3e9e2;
+    --paper:#141d22;
+    --paper-raised:#1c272d;
+    --paper-line:#2c3a40;
+    --contour:#8ba397;
+    --accent:#d09a54;
+    --accent-soft:#3a2e1c;
+    --good:#6bb28c;
+    --good-soft:#1e332a;
+    --warn:#dab35a;
+    --warn-soft:#332a17;
+    --critical:#e08579;
+    --critical-soft:#3a2220;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e3e9e2;
+  --paper:#141d22;
+  --paper-raised:#1c272d;
+  --paper-line:#2c3a40;
+  --contour:#8ba397;
+  --accent:#d09a54;
+  --accent-soft:#3a2e1c;
+  --good:#6bb28c;
+  --good-soft:#1e332a;
+  --warn:#dab35a;
+  --warn-soft:#332a17;
+  --critical:#e08579;
+  --critical-soft:#3a2220;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Archivo',system-ui,-apple-system,sans-serif;
+  line-height:1.5;
+}
+h1,h2,h3,.display{
+  font-family:'Spectral',Georgia,serif;
+  text-wrap:balance;
+}
+.mono{ font-family:'Space Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+button{ font-family:inherit; }
+a{ color:var(--accent); }
+::selection{ background:var(--accent-soft); }
+
+.app{
+  max-width:1180px;
+  margin:0 auto;
+  padding:28px 20px 80px;
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:28px;
+}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr;}
+}
+
+header.masthead{
+  grid-column:1/-1;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--paper-line);
+  padding-bottom:18px;
+  margin-bottom:4px;
+}
+.masthead-title{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
+.masthead-title h1{
+  font-size:2rem;
+  font-weight:600;
+  margin:0;
+  letter-spacing:.2px;
+}
+.masthead-sub{
+  color:var(--contour);
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.quiz-badges{ display:flex; gap:10px; }
+.badge{
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;
+  border:1px solid var(--paper-line);
+  background:var(--paper-raised);
+  color:var(--contour);
+  padding:5px 10px;
+  border-radius:3px;
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+.badge b{ color:var(--ink); font-weight:700; }
+
+nav.rail{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.rail-group h2{
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--contour);
+  font-family:'Archivo',sans-serif;
+  font-weight:600;
+  margin:0 0 8px;
+}
+.mode-list{ display:flex; flex-direction:column; gap:3px; }
+.mode-btn{
+  text-align:left;
+  background:none;
+  border:1px solid transparent;
+  border-radius:4px;
+  padding:9px 10px;
+  cursor:pointer;
+  color:var(--ink);
+  font-size:.92rem;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  transition:background .12s ease, border-color .12s ease;
+}
+.mode-btn .glyph{
+  font-family:'Space Mono',monospace;
+  font-size:.78rem;
+  color:var(--contour);
+  width:1.4em;
+}
+.mode-btn:hover{ background:var(--paper-raised); }
+.mode-btn.active{
+  background:var(--accent-soft);
+  border-color:var(--accent);
+}
+.mode-btn.active .glyph{ color:var(--accent); }
+
+.seg{
+  display:flex;
+  border:1px solid var(--paper-line);
+  border-radius:5px;
+  overflow:hidden;
+}
+.seg button{
+  flex:1;
+  background:var(--paper-raised);
+  border:none;
+  padding:7px 6px;
+  font-size:.78rem;
+  cursor:pointer;
+  color:var(--contour);
+  border-right:1px solid var(--paper-line);
+}
+.seg button:last-child{ border-right:none; }
+.seg button.active{ background:var(--accent); color:var(--paper); }
+
+.seg-inline{
+  display:inline-flex;
+  border:1px solid var(--paper-line);
+  border-radius:7px;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+.seg-inline button{
+  background:var(--paper-raised);
+  border:none;
+  padding:9px 20px;
+  font-size:.9rem;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--contour);
+  border-right:1px solid var(--paper-line);
+}
+.seg-inline button:last-child{ border-right:none; }
+.seg-inline button.active{ background:var(--accent); color:var(--paper); }
+
+.topic-list{ display:flex; flex-direction:column; gap:2px; }
+.topic-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 8px;
+  border-radius:4px;
+  cursor:pointer;
+  border:1px solid transparent;
+  font-size:.84rem;
+}
+.topic-item:hover{ background:var(--paper-raised); }
+.topic-item.active{ border-color:var(--paper-line); background:var(--paper-raised); }
+.topic-item .code{ font-family:'Space Mono',monospace; color:var(--contour); font-size:.74rem; width:2.4em; }
+.topic-item .dot{
+  width:7px; height:7px; border-radius:50%; flex:none;
+  background:var(--paper-line);
+}
+.topic-item .count{ margin-left:auto; color:var(--contour); font-size:.72rem; font-family:'Space Mono',monospace; }
+
+main{ min-width:0; }
+.panel{ display:none; }
+.panel.active{ display:block; }
+
+.panel-head{ margin-bottom:20px; }
+.panel-head h2{ font-size:1.5rem; margin:0 0 6px; font-weight:600; }
+.panel-head p{ color:var(--contour); margin:0; max-width:62ch; font-size:.94rem; }
+
+/* PLAN */
+.timeline{ display:flex; flex-direction:column; gap:0; border-left:2px solid var(--paper-line); margin-left:6px; }
+.day{
+  position:relative;
+  padding:0 0 26px 24px;
+}
+.day::before{
+  content:"";
+  position:absolute;
+  left:-7px; top:2px;
+  width:12px; height:12px;
+  border-radius:50%;
+  background:var(--paper);
+  border:2px solid var(--contour);
+}
+.day.is-quiz::before{ background:var(--accent); border-color:var(--accent); }
+.day-date{ font-family:'Space Mono',monospace; font-size:.76rem; color:var(--contour); text-transform:uppercase; letter-spacing:.06em; }
+.day h3{ margin:2px 0 6px; font-size:1.14rem; font-weight:600; }
+.day p{ margin:0 0 6px; font-size:.92rem; }
+.day .why{ font-size:.82rem; color:var(--contour); font-style:italic; }
+.day .targets{ font-size:.78rem; color:var(--accent); font-family:'Space Mono',monospace; margin-top:4px; }
+
+/* LEARN */
+.chunk-heading{ font-family:'Space Mono',monospace; font-size:.82rem; color:var(--accent); margin-bottom:14px; }
+.chunk-nav{ display:flex; flex-direction:column; gap:6px; margin-top:10px; }
+.chunk-nav .chunk-label{ font-family:'Space Mono',monospace; font-size:.74rem; color:var(--contour); }
+.chunk-nav .chunk-buttons{ display:flex; gap:6px; }
+.chunk-nav button{
+  flex:1;
+  border:1px solid var(--paper-line);
+  background:var(--paper-raised);
+  border-radius:5px;
+  padding:6px 8px;
+  cursor:pointer;
+  color:var(--ink);
+  font-size:.8rem;
+}
+.chunk-nav button:disabled{ opacity:.4; cursor:default; }
+
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+.card{
+  background:var(--paper-raised);
+  border:1px solid var(--paper-line);
+  border-radius:8px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+.card .tag{ font-family:'Space Mono',monospace; font-size:.7rem; color:var(--contour); }
+.card .term{ font-family:'Spectral',serif; font-size:1.28rem; font-weight:600; margin:4px 0 8px; text-wrap:balance; }
+.card .hook{ font-style:italic; color:var(--accent); font-size:.86rem; margin:0 0 8px; padding-left:10px; border-left:2px solid var(--accent-soft); }
+.card .def{ font-size:.88rem; color:var(--ink); margin:0; }
+
+/* RECALL / DRILL */
+.stage{
+  background:var(--paper-raised);
+  border:1px solid var(--paper-line);
+  border-radius:10px;
+  padding:36px 32px;
+  box-shadow:var(--shadow);
+  min-height:280px;
+  display:flex;
+  flex-direction:column;
+}
+.stage-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.stage-topic{ font-family:'Space Mono',monospace; font-size:.72rem; color:var(--contour); text-transform:uppercase; letter-spacing:.06em; }
+.stage-count{ font-family:'Space Mono',monospace; font-size:.72rem; color:var(--contour); }
+.stage-body{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:10px 0; }
+.stage-prompt-label{ font-size:.74rem; text-transform:uppercase; letter-spacing:.08em; color:var(--contour); }
+.stage-prompt{ font-family:'Spectral',serif; font-size:1.9rem; font-weight:600; max-width:36ch; text-wrap:balance; }
+.stage-answer{ max-width:46ch; font-size:1rem; }
+.stage-answer .hook{ font-style:italic; color:var(--accent); margin-top:10px; font-size:.9rem; }
+.stage-actions{ display:flex; gap:10px; justify-content:center; margin-top:22px; flex-wrap:wrap; }
+.btn{
+  border:1px solid var(--paper-line);
+  background:var(--paper);
+  padding:9px 18px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:.88rem;
+  color:var(--ink);
+}
+.btn:hover{ background:var(--paper-raised); }
+.btn.primary{ background:var(--accent); border-color:var(--accent); color:var(--paper); }
+.btn.good{ border-color:var(--good); color:var(--good); }
+.btn.good:hover{ background:var(--good-soft); }
+.btn.warn{ border-color:var(--warn); color:var(--warn); }
+.btn.warn:hover{ background:var(--warn-soft); }
+.btn.critical{ border-color:var(--critical); color:var(--critical); }
+.btn.critical:hover{ background:var(--critical-soft); }
+.btn:focus-visible, .mode-btn:focus-visible, .topic-item:focus-visible, .seg button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+.mc-options{ display:grid; gap:8px; width:100%; max-width:520px; margin-top:6px; }
+.mc-option{
+  border:1px solid var(--paper-line);
+  background:var(--paper);
+  border-radius:6px;
+  padding:12px 14px;
+  text-align:left;
+  cursor:pointer;
+  font-size:.88rem;
+}
+.mc-option:hover{ background:var(--paper-raised); }
+.mc-option.correct{ border-color:var(--good); background:var(--good-soft); }
+.mc-option.incorrect{ border-color:var(--critical); background:var(--critical-soft); }
+.mc-option:disabled{ cursor:default; }
+
+/* PROGRESS */
+.progress-rows{ display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+.prow{ display:grid; grid-template-columns:170px 1fr 60px; align-items:center; gap:12px; }
+.prow .name{ font-size:.86rem; }
+.prow .name .code{ color:var(--contour); font-family:'Space Mono',monospace; font-size:.72rem; margin-right:6px; }
+.contour-track{ height:12px; background:var(--paper-raised); border:1px solid var(--paper-line); border-radius:20px; overflow:hidden; position:relative; }
+.contour-fill{ height:100%; background:linear-gradient(90deg, var(--contour), var(--good)); border-radius:20px; }
+.prow .pct{ font-family:'Space Mono',monospace; font-size:.78rem; color:var(--contour); text-align:right; }
+
+.stat-row{ display:flex; gap:14px; margin-bottom:26px; flex-wrap:wrap; }
+.stat{
+  border:1px solid var(--paper-line);
+  background:var(--paper-raised);
+  border-radius:8px;
+  padding:14px 18px;
+  min-width:120px;
+}
+.stat .num{ font-family:'Space Mono',monospace; font-size:1.5rem; font-weight:700; }
+.stat .lbl{ font-size:.72rem; color:var(--contour); text-transform:uppercase; letter-spacing:.06em; }
+
+.weak-list{ display:flex; flex-direction:column; gap:8px; }
+.weak-item{ border:1px solid var(--paper-line); background:var(--paper-raised); border-radius:6px; }
+.weak-item summary{ cursor:pointer; padding:10px 14px; font-size:.88rem; list-style:none; display:flex; gap:10px; align-items:center; }
+.weak-item summary::-webkit-details-marker{ display:none; }
+.weak-item summary .tag{ font-family:'Space Mono',monospace; font-size:.7rem; color:var(--contour); }
+.weak-item summary .box{ margin-left:auto; font-family:'Space Mono',monospace; font-size:.7rem; color:var(--critical); }
+.weak-item .body{ padding:0 14px 12px 14px; font-size:.85rem; }
+.weak-item .body .hook{ font-style:italic; color:var(--accent); }
+.level-dots{ display:flex; gap:3px; margin-left:auto; margin-right:8px; }
+.level-dots span{ width:7px; height:7px; border-radius:50%; background:var(--paper-line); }
+.level-dots span.filled{ background:var(--good); }
+.weak-item .body .adjust-row{ display:flex; gap:8px; margin-top:10px; }
+.weak-item .body .adjust-row button{
+  border:1px solid var(--paper-line); background:var(--paper); color:var(--ink);
+  border-radius:6px; padding:6px 12px; font-size:.8rem; cursor:pointer;
+}
+.weak-item .body .adjust-row button:hover{ background:var(--paper-raised); }
+
+footer.note{ margin-top:34px; font-size:.78rem; color:var(--contour); border-top:1px solid var(--paper-line); padding-top:14px; }
+
+/* TEST */
+.stage-top-actions{ display:flex; gap:8px; }
+.worksheet{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+.worksheet-item{ display:flex; flex-direction:column; gap:6px; border-bottom:1px solid var(--paper-line); padding-bottom:14px; }
+.worksheet-item .wq{ font-family:'Spectral',serif; font-size:1.1rem; font-weight:600; text-wrap:balance; }
+.worksheet-item .wq-label{ font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--contour); }
+.test-answer{
+  width:100%; resize:vertical; font-family:inherit; font-size:.9rem;
+  border:1px solid var(--paper-line); border-radius:6px; padding:8px 10px;
+  background:var(--paper); color:var(--ink);
+}
+.worksheet-review{ display:flex; flex-direction:column; gap:16px; }
+.review-row{ border:1px solid var(--paper-line); background:var(--paper-raised); border-radius:8px; padding:14px 16px; }
+.review-row .rq{ font-family:'Spectral',serif; font-weight:600; font-size:1.05rem; margin-bottom:8px; }
+.review-row .lbl{ display:block; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--contour); margin-bottom:2px; }
+.review-row .rmine{ margin-bottom:8px; font-size:.9rem; }
+.review-row .rcorrect{ margin-bottom:8px; font-size:.9rem; color:var(--good); }
+.review-row .rhook{ font-style:italic; color:var(--accent); font-size:.85rem; margin-bottom:10px; }
+.review-row .rmark{ display:flex; gap:8px; }
+.review-row button.marked-good{ background:var(--good-soft); }
+.review-row button.marked-bad{ background:var(--critical-soft); }
+
+/* MATCHING */
+.match-board{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+@media (max-width:640px){ .match-board{ grid-template-columns:1fr; } }
+.match-col-label{ font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--contour); margin-bottom:8px; }
+.match-list{ display:flex; flex-direction:column; gap:6px; }
+.match-item{
+  display:flex; align-items:flex-start; gap:10px;
+  border:1px solid var(--paper-line); background:var(--paper-raised);
+  border-radius:6px; padding:9px 12px; cursor:pointer; font-size:.86rem; text-align:left;
+}
+.match-item:hover{ border-color:var(--accent); }
+.match-item .mid{ font-family:'Space Mono',monospace; font-weight:700; color:var(--contour); flex:none; }
+.match-item.selecting{ border-color:var(--accent); background:var(--accent-soft); }
+.match-item.paired{ opacity:.7; }
+.match-item .badge{ margin-left:auto; font-family:'Space Mono',monospace; font-size:.72rem; color:var(--accent); flex:none; }
+.match-item.correct{ border-color:var(--good); background:var(--good-soft); opacity:1; }
+.match-item.incorrect{ border-color:var(--critical); background:var(--critical-soft); opacity:1; }
+.match-status{ font-size:.78rem; color:var(--contour); margin:14px 0; }
+
+/* PRINT SHEET */
+.print-grid{ column-count:2; column-gap:28px; }
+@media (max-width:760px){ .print-grid{ column-count:1; } }
+.print-term{ break-inside:avoid; margin-bottom:16px; }
+.print-term .pt-tag{ font-family:'Space Mono',monospace; font-size:.68rem; color:var(--contour); }
+.print-term .pt-name{ font-family:'Spectral',serif; font-weight:600; font-size:1.02rem; margin:2px 0 4px; }
+.print-term .pt-def{ font-size:.86rem; margin:0 0 4px; }
+.print-term .pt-hook{ font-style:italic; color:var(--accent); font-size:.8rem; }
+.print-sheet-title{ font-size:1rem; margin:0 0 16px; color:var(--contour); font-weight:600; }
+
+@media print{
+  nav.rail, .stage-actions, .stage-top-actions, .quiz-badges, footer.note, .rmark, .panel-head p, .no-print{ display:none !important; }
+  .match-item .badge{ display:none; }
+  .match-item{ cursor:default; }
+  body{ background:#fff; color:#000; }
+  .app{ display:block; max-width:none; padding:0; }
+  .panel{ display:none !important; }
+  .panel.active{ display:block !important; }
+  .card, .stage, .worksheet-item, .print-term, .review-row{ box-shadow:none; }
+  .test-answer{ border:none; border-bottom:1px solid #000; border-radius:0; background:transparent; }
+  a{ color:#000; }
+}
+</style>
+
+<div class="app">
+  <header class="masthead">
+    <div class="masthead-title">
+      <h1>Compass Points</h1>
+      <span class="masthead-sub">AP Human Geo &middot; Unit 1</span>
+    </div>
+    <div class="quiz-badges">
+      <span class="badge">Quiz 1 <b>Wed 9/2</b></span>
+      <span class="badge">Quiz 2 <b>Fri 9/4</b></span>
+    </div>
+  </header>
+
+  <nav class="rail">
+    <div class="rail-group">
+      <h2>Study mode</h2>
+      <div class="mode-list" id="modeList"></div>
+    </div>
+    <div class="rail-group">
+      <h2>Term set</h2>
+      <div class="seg" id="quizSeg"></div>
+    </div>
+    <div class="rail-group" id="chunkRailGroup">
+      <h2>Chunk</h2>
+      <div class="chunk-nav" id="chunkNavRail"></div>
+    </div>
+    <div class="rail-group" id="scopeRailGroup">
+      <h2>Practice scope</h2>
+      <div class="seg" id="scopeSeg"></div>
+    </div>
+    <div class="rail-group" id="testTypeRailGroup">
+      <h2>Test type</h2>
+      <div class="seg" id="testTypeSeg"></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="panel" id="panel-plan">
+      <div class="panel-head">
+        <h2>Six-day plan</h2>
+        <p>Each day leans on a different memory principle instead of rereading the same list. Do the day's mode, not all of them.</p>
+      </div>
+      <div class="timeline" id="planTimeline"></div>
+    </section>
+
+    <section class="panel" id="panel-learn">
+      <div class="panel-head">
+        <h2>Learn &mdash; first pass</h2>
+        <p>No self-testing here. Read each card once, say the hook out loud, move on.</p>
+      </div>
+      <div class="chunk-heading" id="learnChunkHeading"></div>
+      <div class="card-grid" id="cardGrid"></div>
+    </section>
+
+    <section class="panel" id="panel-recall">
+      <div class="panel-head">
+        <h2>Recall practice</h2>
+        <p>Say the answer out loud before you reveal it. Grading yourself honestly is what makes this work &mdash; struggling terms come back sooner. Pick a chunk in the sidebar to keep it small, or switch scope to the whole set once the chunks feel solid.</p>
+      </div>
+      <div class="stage" id="recallStage"></div>
+    </section>
+
+    <section class="panel" id="panel-drill">
+      <div class="panel-head">
+        <h2>Mixed drill</h2>
+        <p>Multiple choice &mdash; the wrong options are the terms it's easiest to confuse with the right one. Start scoped to one chunk, then widen to the whole set for real interleaving later in the week.</p>
+      </div>
+      <div class="stage" id="drillStage"></div>
+    </section>
+
+    <section class="panel" id="panel-test">
+      <div class="panel-head">
+        <h2 id="testHeading">Test mode</h2>
+        <p id="testDesc">Write every answer before you see any of them, then grade yourself at the end.</p>
+      </div>
+      <div class="seg-inline" id="testTypeInline"></div>
+      <div class="stage" id="testStage"></div>
+    </section>
+
+    <section class="panel" id="panel-print">
+      <div class="panel-head">
+        <h2>Printable study sheet</h2>
+        <p>A clean, no-screen reference for the current term set &mdash; read it on paper, no device needed.</p>
+      </div>
+      <div class="stage-top-actions" style="margin-bottom:18px;">
+        <button class="btn primary" id="printSheetBtn">Print this sheet</button>
+      </div>
+      <div id="printSheetContent"></div>
+    </section>
+
+    <section class="panel" id="panel-progress">
+      <div class="panel-head">
+        <h2>Progress</h2>
+        <p>Mastery is tracked per term from your Recall, Drill, and Test grading &mdash; not just whether you've looked at it.</p>
+      </div>
+      <div class="stat-row" id="statRow"></div>
+      <div class="progress-rows" id="progressRows"></div>
+      <h2 style="font-size:1rem;margin-bottom:10px;">Still shaky</h2>
+      <div class="weak-list" id="weakList"></div>
+      <h2 style="font-size:1rem;margin:24px 0 6px;">Every term &mdash; adjust by hand</h2>
+      <p style="color:var(--contour);font-size:.82rem;margin:0 0 12px;">Felt solid yesterday but shaky today? Knock a term down a level here so it comes back around sooner in Recall and Drill &mdash; no need to wait for it to come up on its own.</p>
+      <div class="weak-list" id="allTermsList"></div>
+      <div style="margin-top:28px;">
+        <button class="btn critical" id="resetProgressBtn">Reset all progress</button>
+      </div>
+    </section>
+
+    <footer class="note">Progress saves in this browser only (localStorage) &mdash; same device and browser each time you open this page.</footer>
+  </main>
+</div>
+
+<script>
+const TOPICS = [
+  {code:"1.1", name:"Introduction to Maps"},
+  {code:"1.2", name:"Geographic Data"},
+  {code:"1.3", name:"The Power of Geographic Data"},
+  {code:"1.4", name:"Spatial Concepts"},
+  {code:"1.5", name:"Human-Environment Interaction"},
+  {code:"1.6", name:"Scales of Analysis"},
+  {code:"1.7", name:"Regional Analysis"},
+];
+
+// Only the 42 terms Katrina's teacher highlighted are included (21 blue, 21 pink). quiz:1 = blue strikethrough (due Wed 9/2), quiz:2 = pink strikethrough (due Fri 9/4).
+const TERMS = [
+{n:1,topic:"1.1",quiz:1,term:"Reference map",def:"A map designed for people to refer to for general information about places — e.g. political, physical, road, or plat maps.",hook:"You REFER to it for plain facts — no special theme, just the basics."},
+{n:2,topic:"1.1",quiz:1,term:"Thematic map",def:"A map that shows spatial aspects of information about a phenomenon — e.g. choropleth, dot distribution, graduated symbol, isoline, and cartogram maps.",hook:"Built around one THEME — color-coded population, weather, election results."},
+{n:3,topic:"1.1",quiz:1,term:"Scale",def:"The ratio between the size of things in the real world and the size of those same things on the map.",hook:"The shrink ratio between the map and the real world."},
+{n:4,topic:"1.1",quiz:1,term:"Cartographic scale",def:"The way a map communicates the ratio of its size to the size it represents — e.g. a ratio or fraction, words, or a bar line.",hook:"How that ratio actually gets SHOWN on the map: a fraction, a sentence, or a little bar."},
+{n:5,topic:"1.1",quiz:1,term:"Small-scale map",def:"A map that shows a large amount of area with less detail — e.g. a global map.",hook:"SMALL fraction (1/1,000,000) = zoomed OUT = big area, little detail. Compare the fractions like real numbers: smaller number, smaller scale."},
+{n:6,topic:"1.1",quiz:1,term:"Large-scale map",def:"A map that shows a small amount of area with a greater amount of detail — e.g. a North America map.",hook:"LARGE fraction (1/1,000) = zoomed IN = small area, lots of detail. This pairs with Small-scale map — the classic mix-up on this test."},
+{n:7,topic:"1.1",quiz:1,term:"Latitude",def:"Distance north or south of the equator.",hook:"LAT-itude runs fLAT, east-west, measuring north/south position."},
+{n:9,topic:"1.1",quiz:1,term:"Longitude",def:"Distance east or west of the Prime Meridian.",hook:"LONG-itude runs pole-to-pole, measuring east/west position."},
+{n:12,topic:"1.1",quiz:1,term:"Connectivity",def:"Degree of linkage between two locations by roads or other links, visible or imaginary.",hook:"How things CONNECT — the links between two places."},
+{n:13,topic:"1.1",quiz:1,term:"Accessibility",def:"How quickly and easily people in one location can interact with people in another location.",hook:"How easy it is to ACCESS a place — quick, or a hassle."},
+{n:15,topic:"1.1",quiz:1,term:"Absolute distance",def:"Usually measured in terms of feet, miles, meters, or kilometers.",hook:"ABSOLUTE = a fixed, exact number."},
+{n:16,topic:"1.1",quiz:1,term:"Relative distance",def:"Indicates the degree of nearness based on time or money, and is often dependent on the mode of transportation.",hook:"RELATIVE to time or money, not a fixed number — ‘two hours away’ by plane, ‘a week’ on foot."},
+{n:17,topic:"1.1",quiz:1,term:"Elevation",def:"Distance of features above sea level, usually measured in feet or meters.",hook:"ELEVATE = lift up — height above sea level."},
+{n:18,topic:"1.1",quiz:1,term:"Distribution",def:"The way a geographic phenomenon is spread out over an area.",hook:"How something is SPREAD OUT across an area."},
+{n:19,topic:"1.1",quiz:1,term:"Density",def:"Number of things — people, animals, or objects — in a specific area. High or low density.",hook:"How PACKED IN something is."},
+{n:20,topic:"1.1",quiz:1,term:"Pattern",def:"The arrangement of things in a particular space — clustered, dispersed, linear, circular, or random.",hook:"The SHAPE distribution takes on."},
+{n:21,topic:"1.1",quiz:1,term:"Map projection",def:"The method by which cartographers transfer a sphere or globe into a two-dimensional representation. All maps will have one or more of these distortions: shape, area (size), distance, and/or direction.",hook:"Squashing a globe flat always distorts something — shape, size, distance, or direction. Pick your poison."},
+{n:22,topic:"1.2",quiz:2,term:"Landscape analysis",def:"The task of defining and describing landscapes.",hook:"Defining and DESCRIBING what a landscape looks like."},
+{n:27,topic:"1.3",quiz:1,term:"Census data",def:"Specific information about people in a country, state, or other geographic region. Includes a population's characteristics such as age, sex, and occupation.",hook:"The government CENSUSes (counts) people, region by region."},
+{n:28,topic:"1.3",quiz:1,term:"Geovisualization",def:"2D or 3D interactive maps that allow people to zoom in or out.",hook:"Think Google Earth: a map you can spin and zoom, not just a flat printout."},
+{n:34,topic:"1.4",quiz:2,term:"Absolute location",def:"The precise spot where something is according to a system — e.g. latitude and longitude, or an address.",hook:"ABSOLUTE = exact address, lat/long. One right answer."},
+{n:35,topic:"1.4",quiz:2,term:"Relative location",def:"Description of where something is in relation to other things.",hook:"RELATIVE to something else — ‘two blocks from downtown.’ Pairs with Absolute location."},
+{n:36,topic:"1.4",quiz:2,term:"Place",def:"Refers to a location on Earth that is distinguished by its physical and human characteristics.",hook:"A location's PERSONALITY — what makes it recognizable as itself."},
+{n:37,topic:"1.4",quiz:2,term:"Site",def:"Refers to a place's absolute location, as well as its physical characteristics.",hook:"SITe = where it SITs — the spot's own ground, climate, features."},
+{n:38,topic:"1.4",quiz:2,term:"Situation",def:"Refers to a place's location in relation to other places or its surrounding features. Describes a place's connection to other places.",hook:"SituATION = its relATION to what's around it. Pairs with Site: Site is about itself, Situation is about its neighbors."},
+{n:39,topic:"1.4",quiz:2,term:"Sense of place",def:"State of mind derived through the infusion of a place with meaning and emotion by remembering important events that occurred there, or by labeling a place with a certain character.",hook:"The FEELING a place gives you — memories or a reputation attached to it."},
+{n:40,topic:"1.4",quiz:2,term:"Toponym",def:"A place name. Types: Descriptive, Associative, Commemorative/Commendatory, Incidents, Possession, Folk Culture, Manufactured, Mistakes, Shift Names.",hook:"TOPO (place) + ONYM (name) = a place name. One memorable example per type: Descriptive — Rocky Mountains (describes it). Associative — Council Bluffs (named for a nearby feature). Commemorative — Washington, DC (honors a person). Incidents — Battle Creek (something happened there). Possession — Bob's Store (the 's shows ownership). Folk culture — a local nickname like Motown. Manufactured — an invented name, like a subdivision. Mistakes — a typo that stuck. Shift names — Bombay → Mumbai (changed over time)."},
+{n:41,topic:"1.4",quiz:2,term:"Time-space compression",def:"The ‘shrinking’ of ‘time distance’ between locations because of improved methods of transportation and/or communication.",hook:"The world FEELS smaller — a text reaches Tokyo instantly."},
+{n:43,topic:"1.4",quiz:2,term:"Flow",def:"Refers to the patterns and movement of ideas, people, products, and other phenomena.",hook:"The actual MOVEMENT itself — the traffic."},
+{n:44,topic:"1.4",quiz:2,term:"Distance decay",def:"The effect of distance on interaction — generally, the greater the distance, the less interaction there is.",hook:"Interaction fades with distance, like a wifi signal getting weaker."},
+{n:46,topic:"1.5",quiz:2,term:"Human-environment interaction",def:"Connection and exchange between humans and the natural world.",hook:"The umbrella topic for this whole section — the two-way relationship."},
+{n:48,topic:"1.5",quiz:2,term:"Sustainability",def:"Use of resources now in ways that allow their use in the future while minimizing negative impacts on the environment.",hook:"Using resources now without wrecking them for later."},
+{n:49,topic:"1.5",quiz:2,term:"Land use",def:"Study of how land is utilized, modified, and organized by people.",hook:"HOW people use land — farming, housing, industry."},
+{n:50,topic:"1.5",quiz:2,term:"Built environment",def:"The physical artifacts that humans have created that form part of the landscape.",hook:"Anything humans BUILT — buildings, roads, bridges."},
+{n:51,topic:"1.5",quiz:2,term:"Cultural landscape",def:"Anything built by humans of certain cultural backgrounds on different physical landscapes.",hook:"The built environment stamped with a specific culture's fingerprint — a Chinatown's architecture."},
+{n:53,topic:"1.5",quiz:2,term:"Environmental determinism",def:"Belief that landforms and climate are the most powerful forces shaping human behavior and societal development.",hook:"Environment DETERMINES behavior — nature is the boss (an old, rejected idea)."},
+{n:54,topic:"1.5",quiz:2,term:"Possibilism (aka: Cultural determinism)",def:"View that acknowledges limits on the effects of the natural environment and focuses more on the role that culture plays.",hook:"Environment offers POSSIBILITIES, but culture decides what humans do with them — culture is the boss. Pairs directly with Environmental determinism."},
+{n:55,topic:"1.6",quiz:1,term:"Geographic scale (relative scale)",def:"Refers to the area of the world being studied. Global scale = the entire world (e.g. world-at-night image, world population density). World regional scale = multiple countries (e.g. South Asia, Western Europe). National scale = one country (e.g. the United States, Thailand). Local scale = a province, state, city, county, or neighborhood (e.g. Utah, Tokyo, North Long Beach).",hook:"The ZOOM LEVEL of study: Global → World regional → National → Local, each one zooming in further."},
+{n:56,topic:"1.6",quiz:1,term:"Scale of analysis (aggregation)",def:"Aggregation of data at different scales — e.g. global, regional, national, and local data on a map.",hook:"Grouping the SAME data at different zoom levels — one census, shown globally, nationally, and locally."},
+{n:58,topic:"1.7",quiz:2,term:"Formal regions (uniform)",def:"Areas united by one or more traits — political, physical, cultural, or economic — shared everywhere inside a sharp, official border.",hook:"FORMALLY defined by one trait shared everywhere, with a sharp official edge — e.g. Texas: you're either in it or you're not. No fuzzy middle."},
+{n:59,topic:"1.7",quiz:2,term:"Functional regions (nodal)",def:"Areas united by networks of communication, transportation, or other interactions.",hook:"Organized around a central NODE or hub — a pizza place's delivery zone, a cell tower's range, a subway system's commuter zone. Move the hub, and the region falls apart."},
+{n:60,topic:"1.7",quiz:2,term:"Perceptual regions (vernacular)",def:"Areas defined by the informal sense of place that people ascribe to them.",hook:"Exists in people's HEADS, not on an official map — ‘the South,’ ‘the Midwest.’ Ask ten people where ‘the South’ starts and you'll get ten different answers — that fuzziness IS the definition. (Formal = official border. Functional = built around a hub. Perceptual = just a vibe.)"},
+];
+
+const PLAN = [
+  {date:"Sat 8/29", quiz:false, title:"First encoding — Quiz 1 words", why:"Chunking: small groups (~7 terms) are what short-term memory can actually hold.", body:"Learn mode, Quiz 1 set (Topics 1.1, 1.3, 1.6 — 21 words), one chunk at a time. Read term → hook → definition, say it out loud once. Don't quiz yourself yet.", targets:"21 words · Topics 1.1, 1.3, 1.6"},
+  {date:"Sun 8/30", quiz:false, title:"First recall pass — Quiz 1 words", why:"Retrieval practice: forcing your brain to produce the answer beats rereading it.", body:"Recall mode, Quiz 1 set. Grade yourself honestly — Missed items come back sooner.", targets:"21 words · Topics 1.1, 1.3, 1.6"},
+  {date:"Mon 8/31", quiz:false, title:"Interleave Quiz 1 + start Quiz 2", why:"Interleaving: mixing topics forces your brain to tell similar terms apart, not just recognize them in order.", body:"Mixed Drill on Quiz 1 words (watch for the confusable pairs, like Small- vs Large-scale map). Then a first Learn pass on Quiz 2's Topic 1.4.", targets:"Quiz 1 drill · Topic 1.4 learn"},
+  {date:"Tue 9/1", quiz:false, title:"Light review + finish Quiz 2 first pass", why:"Spacing: a short review a day later locks in what Sunday's recall started.", body:"Quick Recall + Drill sweep on Quiz 1 (10–15 min, just the ones still shaky). Then Learn + Recall on Quiz 2's Topics 1.2, 1.5, 1.7.", targets:"Quiz 1 review · Topics 1.2, 1.5, 1.7"},
+  {date:"Wed 9/2", quiz:true, title:"Quiz 1", why:"", body:"Quiz 1 today — 21 words from Topics 1.1, 1.3, 1.6. That evening, switch fully to Recall mode on the Quiz 2 set.", targets:"21 words"},
+  {date:"Thu 9/3", quiz:false, title:"Interleaved final review — Quiz 2 words", why:"Interleaving + spacing, one more time, right before the test.", body:"Mixed Drill across all 21 Quiz 2 words. Check the Progress tab and hit anything still marked shaky.", targets:"21 words · Topics 1.2, 1.4, 1.5, 1.7"},
+  {date:"Fri 9/4", quiz:true, title:"Quiz 2", why:"", body:"Quiz 2 today — 21 words from Topics 1.2, 1.4, 1.5, 1.7.", targets:"21 words"},
+];
+
+const STORAGE_KEY = "compassPoints_progress_emma_v1";
+function loadProgress(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveProgress(p){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }catch(e){}
+}
+let progress = loadProgress();
+function getBox(id){ return progress[id] ? progress[id].box : 0; }
+function setBox(id, box){
+  progress[id] = progress[id] || {box:0, seen:0};
+  progress[id].box = Math.max(0, Math.min(4, box));
+  progress[id].seen = (progress[id].seen||0) + 1;
+  saveProgress(progress);
+}
+
+let state = { mode:"plan", quizFilter:"1", chunkIdx:0, scope:"chunk", testType:"written" };
+function shuffled(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function termsForQuiz(qf){
+  if(qf==="all") return TERMS;
+  const q = parseInt(qf,10);
+  return TERMS.filter(t=>t.quiz===q);
+}
+function topicsForQuiz(qf){
+  const pool = termsForQuiz(qf);
+  const codes = new Set(pool.map(t=>t.topic));
+  return TOPICS.filter(t=>codes.has(t.code));
+}
+function chunk(arr, size){
+  const out=[];
+  for(let i=0;i<arr.length;i+=size) out.push(arr.slice(i,i+size));
+  return out;
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+const MODES = [
+  {id:"plan", label:"Plan", glyph:"00"},
+  {id:"learn", label:"Learn", glyph:"01"},
+  {id:"recall", label:"Recall", glyph:"02"},
+  {id:"drill", label:"Mixed drill", glyph:"03"},
+  {id:"test", label:"Test", glyph:"04"},
+  {id:"print", label:"Print sheet", glyph:"05"},
+  {id:"progress", label:"Progress", glyph:"06"},
+];
+
+function renderRail(){
+  const modeList = document.getElementById("modeList");
+  modeList.innerHTML = MODES.map(m =>
+    `<button class="mode-btn${state.mode===m.id?' active':''}" data-mode="${m.id}"><span class="glyph">${m.glyph}</span>${m.label}</button>`
+  ).join("");
+  modeList.querySelectorAll(".mode-btn").forEach(b=>{
+    b.addEventListener("click", ()=>{ state.mode=b.dataset.mode; render(); });
+  });
+
+  const seg = document.getElementById("quizSeg");
+  const segOpts = [{v:"1",l:"Quiz 1"},{v:"2",l:"Quiz 2"},{v:"all",l:"All"}];
+  seg.innerHTML = segOpts.map(o=>`<button class="${state.quizFilter===o.v?'active':''}" data-v="${o.v}">${o.l}</button>`).join("");
+  seg.querySelectorAll("button").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      state.quizFilter = b.dataset.v;
+      state.chunkIdx = 0;
+      resetTestState();
+      render();
+    });
+  });
+
+  const chunkRailGroup = document.getElementById("chunkRailGroup");
+  const chunkNavRail = document.getElementById("chunkNavRail");
+  const scopeRailGroup = document.getElementById("scopeRailGroup");
+  const testTypeRailGroup = document.getElementById("testTypeRailGroup");
+  const isPractice = state.mode==="recall" || state.mode==="drill" || state.mode==="test";
+  const showChunkNav = state.mode==="learn" || (isPractice && state.scope==="chunk");
+  if(showChunkNav){
+    chunkRailGroup.style.display = "";
+    const chunks = quizChunks(state.quizFilter);
+    if(state.chunkIdx >= chunks.length) state.chunkIdx = 0;
+    chunkNavRail.innerHTML = `
+      <span class="chunk-label">Chunk ${state.chunkIdx+1} of ${chunks.length} (${(chunks[state.chunkIdx]||[]).length} of ${termsForQuiz(state.quizFilter).length} words)</span>
+      <div class="chunk-buttons">
+        <button id="chunkPrev" ${state.chunkIdx===0?"disabled":""}>&larr; Prev</button>
+        <button id="chunkNext" ${state.chunkIdx>=chunks.length-1?"disabled":""}>Next &rarr;</button>
+      </div>
+    `;
+    document.getElementById("chunkPrev").addEventListener("click", ()=>{ state.chunkIdx=Math.max(0,state.chunkIdx-1); resetTestState(); render(); });
+    document.getElementById("chunkNext").addEventListener("click", ()=>{ state.chunkIdx=Math.min(chunks.length-1,state.chunkIdx+1); resetTestState(); render(); });
+  } else {
+    chunkRailGroup.style.display = "none";
+  }
+
+  if(isPractice){
+    scopeRailGroup.style.display = "";
+    const scopeSeg = document.getElementById("scopeSeg");
+    const scopeOpts = [{v:"chunk",l:"This chunk"},{v:"all",l:"Whole set"}];
+    scopeSeg.innerHTML = scopeOpts.map(o=>`<button class="${state.scope===o.v?'active':''}" data-v="${o.v}">${o.l}</button>`).join("");
+    scopeSeg.querySelectorAll("button").forEach(b=>{
+      b.addEventListener("click", ()=>{ state.scope=b.dataset.v; resetTestState(); render(); });
+    });
+  } else {
+    scopeRailGroup.style.display = "none";
+  }
+
+  if(state.mode==="test"){
+    testTypeRailGroup.style.display = "";
+    const testTypeSeg = document.getElementById("testTypeSeg");
+    const testTypeOpts = [{v:"written",l:"Written"},{v:"matching",l:"Matching"}];
+    testTypeSeg.innerHTML = testTypeOpts.map(o=>`<button class="${state.testType===o.v?'active':''}" data-v="${o.v}">${o.l}</button>`).join("");
+    testTypeSeg.querySelectorAll("button").forEach(b=>{
+      b.addEventListener("click", ()=>{ state.testType=b.dataset.v; resetTestState(); render(); });
+    });
+  } else {
+    testTypeRailGroup.style.display = "none";
+  }
+}
+
+function resetTestState(){
+  testItems = null;
+  matchLeft = null;
+}
+
+function quizChunks(qf){
+  return chunk(termsForQuiz(qf), 7);
+}
+function currentChunkTerms(){
+  const chunks = quizChunks(state.quizFilter);
+  return chunks[state.chunkIdx] || [];
+}
+function practicePool(){
+  if(state.scope==="chunk") return currentChunkTerms();
+  return termsForQuiz(state.quizFilter);
+}
+
+function renderPlan(){
+  const el = document.getElementById("planTimeline");
+  el.innerHTML = PLAN.map(d=>`
+    <div class="day${d.quiz?' is-quiz':''}">
+      <div class="day-date">${d.date}${d.quiz?' — QUIZ DAY':''}</div>
+      <h3>${d.title}</h3>
+      <p>${d.body}</p>
+      ${d.why?`<div class="why">${d.why}</div>`:""}
+      <div class="targets">${d.targets}</div>
+    </div>
+  `).join("");
+}
+
+function renderLearn(){
+  const grid = document.getElementById("cardGrid");
+  const current = currentChunkTerms();
+  const chunks = quizChunks(state.quizFilter);
+  const total = termsForQuiz(state.quizFilter).length;
+  document.getElementById("learnChunkHeading").innerHTML =
+    `Chunk ${state.chunkIdx+1} of ${chunks.length} &middot; words ${state.chunkIdx*7+1}&ndash;${state.chunkIdx*7+current.length} of ${total} in ${state.quizFilter==="all"?"the combined set":"Quiz "+state.quizFilter}`;
+  grid.innerHTML = current.map(t=>`
+    <div class="card">
+      <div class="tag">${t.topic}.${t.n}</div>
+      <div class="term">${escapeHtml(t.term)}</div>
+      <p class="hook">${escapeHtml(t.hook)}</p>
+      <p class="def">${escapeHtml(t.def)}</p>
+    </div>
+  `).join("");
+}
+
+let recallCurrent = null;
+let recallSessionCount = 0;
+function pickWeighted(pool){
+  const weights = pool.map(t=>5-getBox(t.n));
+  const total = weights.reduce((a,b)=>a+b,0);
+  let r = Math.random()*total;
+  for(let i=0;i<pool.length;i++){
+    r -= weights[i];
+    if(r<=0) return pool[i];
+  }
+  return pool[pool.length-1];
+}
+function renderRecallNext(){
+  const pool = practicePool();
+  if(pool.length===0) return;
+  recallCurrent = pickWeighted(pool);
+  const flipped = Math.random() < 0.3;
+  const stage = document.getElementById("recallStage");
+  const topicName = TOPICS.find(t=>t.code===recallCurrent.topic).name;
+  const scopeLabel = state.scope==="chunk"
+    ? `${topicName} &middot; Chunk ${state.chunkIdx+1} of ${quizChunks(state.quizFilter).length} (${pool.length} words)`
+    : `${state.quizFilter==="all"?"All terms":"Quiz "+state.quizFilter} &middot; whole set (${pool.length} words)`;
+  stage.innerHTML = `
+    <div class="stage-top">
+      <span class="stage-topic">${scopeLabel}</span>
+      <span class="stage-count">${recallSessionCount} reviewed this session</span>
+    </div>
+    <div class="stage-body">
+      <span class="stage-prompt-label">${flipped ? "Which term is this?" : "Define this term"}</span>
+      <div class="stage-prompt">${escapeHtml(flipped ? recallCurrent.def : recallCurrent.term)}</div>
+      <div id="recallAnswerArea"></div>
+    </div>
+  `;
+  const area = document.getElementById("recallAnswerArea");
+  area.innerHTML = `<div class="stage-actions"><button class="btn primary" id="revealBtn">Show answer</button></div>`;
+  document.getElementById("revealBtn").addEventListener("click", ()=>{
+    area.innerHTML = `
+      <div class="stage-answer">
+        <div>${escapeHtml(flipped ? recallCurrent.term : recallCurrent.def)}</div>
+        <div class="hook">${escapeHtml(recallCurrent.hook)}</div>
+      </div>
+      <div class="stage-actions">
+        <button class="btn critical" data-g="0">Missed it</button>
+        <button class="btn warn" data-g="2">Shaky</button>
+        <button class="btn good" data-g="4">Nailed it</button>
+      </div>
+    `;
+    area.querySelectorAll("button[data-g]").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        const grade = parseInt(b.dataset.g,10);
+        if(grade===0) setBox(recallCurrent.n, 0);
+        else if(grade===2) setBox(recallCurrent.n, Math.max(0,getBox(recallCurrent.n)-1));
+        else setBox(recallCurrent.n, getBox(recallCurrent.n)+1);
+        recallSessionCount++;
+        renderRecallNext();
+      });
+    });
+  });
+}
+function renderRecall(){ recallSessionCount = 0; renderRecallNext(); }
+
+let drillSessionCount = 0;
+function renderDrillNext(){
+  const pool = practicePool();
+  if(pool.length===0) return;
+  const current = pickWeighted(pool);
+  const flipped = Math.random() < 0.5;
+  const widerPool = termsForQuiz(state.quizFilter).filter(t=>t.n!==current.n);
+  const sameTopicWider = widerPool.filter(t=>t.topic===current.topic);
+  let distractPool = sameTopicWider.length>=3 ? sameTopicWider : widerPool;
+  const distractors = [];
+  const usedIdx = new Set();
+  while(distractors.length<3 && distractors.length<distractPool.length){
+    const idx = Math.floor(Math.random()*distractPool.length);
+    if(usedIdx.has(idx)) continue;
+    usedIdx.add(idx);
+    distractors.push(distractPool[idx]);
+  }
+  const options = [current, ...distractors].map(t => flipped ? t.term : t.def);
+  for(let i=options.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [options[i],options[j]] = [options[j],options[i]];
+  }
+  const correctAnswer = flipped ? current.term : current.def;
+  const stage = document.getElementById("drillStage");
+  const topicName = TOPICS.find(t=>t.code===current.topic).name;
+  const scopeLabel = state.scope==="chunk"
+    ? `${topicName} &middot; Chunk ${state.chunkIdx+1} of ${quizChunks(state.quizFilter).length} (${pool.length} words)`
+    : `${state.quizFilter==="all"?"All terms":"Quiz "+state.quizFilter} &middot; whole set (${pool.length} words)`;
+  stage.innerHTML = `
+    <div class="stage-top">
+      <span class="stage-topic">${scopeLabel}</span>
+      <span class="stage-count">${drillSessionCount} answered this session</span>
+    </div>
+    <div class="stage-body">
+      <span class="stage-prompt-label">${flipped ? "Which term matches this definition?" : "Pick the correct definition"}</span>
+      <div class="stage-prompt" style="font-size:1.4rem;">${escapeHtml(flipped ? current.def : current.term)}</div>
+      <div class="mc-options" id="mcOptions"></div>
+      <div id="drillNextArea"></div>
+    </div>
+  `;
+  const mc = document.getElementById("mcOptions");
+  mc.innerHTML = options.map((o,i)=>`<button class="mc-option" data-i="${i}">${escapeHtml(o)}</button>`).join("");
+  mc.querySelectorAll(".mc-option").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const chosen = options[parseInt(btn.dataset.i,10)];
+      const isCorrect = chosen === correctAnswer;
+      mc.querySelectorAll(".mc-option").forEach(b=>{
+        b.disabled = true;
+        if(b.textContent === correctAnswer) b.classList.add("correct");
+      });
+      if(!isCorrect) btn.classList.add("incorrect");
+      setBox(current.n, isCorrect ? getBox(current.n)+1 : 0);
+      drillSessionCount++;
+      document.getElementById("drillNextArea").innerHTML = `<div class="stage-actions"><button class="btn primary" id="drillNextBtn">Next →</button></div>`;
+      document.getElementById("drillNextBtn").addEventListener("click", renderDrillNext);
+    });
+  });
+}
+function renderDrill(){ drillSessionCount = 0; renderDrillNext(); }
+
+function testScopeLabel(pool){
+  return state.scope==="chunk"
+    ? `Chunk ${state.chunkIdx+1} of ${quizChunks(state.quizFilter).length} (${pool.length} words)`
+    : `${state.quizFilter==="all"?"all terms":"Quiz "+state.quizFilter} (${pool.length} words)`;
+}
+
+let testItems = null;
+let testAnswers = {};
+let testGraded = false;
+let testResults = {};
+function newWrittenTest(){
+  const pool = practicePool();
+  const items = pool.map(t=>({term:t, flipped: Math.random()<0.25}));
+  testItems = shuffled(items);
+  testAnswers = {};
+  testGraded = false;
+  testResults = {};
+  renderWrittenTest();
+}
+function testScoreLabel(){
+  const marked = Object.keys(testResults).length;
+  const correct = Object.values(testResults).filter(Boolean).length;
+  return `${correct}/${marked} marked so far &middot; ${testItems.length} questions`;
+}
+function renderWrittenTest(){
+  const wrap = document.getElementById("testStage");
+  if(!testItems || testItems.length===0){ newWrittenTest(); return; }
+  if(!testGraded){
+    wrap.innerHTML = `
+      <div class="stage-top">
+        <span class="stage-topic">${testItems.length} questions &middot; ${testScopeLabel(testItems.map(it=>it.term))}</span>
+        <div class="stage-top-actions">
+          <button class="btn" id="testNewBtn">New test</button>
+          <button class="btn" id="testPrintBtn">Print blank copy</button>
+        </div>
+      </div>
+      <ol class="worksheet">
+      ${testItems.map((it,i)=>`
+        <li class="worksheet-item">
+          <div class="wq-label">${i+1}. ${it.flipped ? "Which term is this?" : "Define this term"}</div>
+          <div class="wq">${escapeHtml(it.flipped ? it.term.def : it.term.term)}</div>
+          <textarea class="test-answer" data-n="${it.term.n}" rows="2" placeholder="Write your answer..."></textarea>
+        </li>
+      `).join("")}
+      </ol>
+      <div class="stage-actions"><button class="btn primary" id="gradeBtn">Grade my test</button></div>
+    `;
+    document.getElementById("testNewBtn").addEventListener("click", newWrittenTest);
+    document.getElementById("testPrintBtn").addEventListener("click", ()=>{ window.print(); });
+    document.getElementById("gradeBtn").addEventListener("click", ()=>{
+      wrap.querySelectorAll(".test-answer").forEach(ta=>{ testAnswers[ta.dataset.n] = ta.value; });
+      testGraded = true;
+      renderWrittenTest();
+    });
+  } else {
+    wrap.innerHTML = `
+      <div class="stage-top">
+        <span class="stage-topic">Review &amp; self-grade</span>
+        <span class="stage-count" id="testScoreLabel">${testScoreLabel()}</span>
+      </div>
+      <div class="worksheet-review">
+      ${testItems.map((it)=>{
+        const n = it.term.n;
+        const mine = (testAnswers[n]||"").trim() || "(left blank)";
+        const correctSide = it.flipped ? it.term.term : it.term.def;
+        return `
+        <div class="review-row" data-n="${n}">
+          <div class="rq">${escapeHtml(it.flipped ? it.term.def : it.term.term)}</div>
+          <div class="rmine"><span class="lbl">You wrote</span>${escapeHtml(mine)}</div>
+          <div class="rcorrect"><span class="lbl">Correct answer</span>${escapeHtml(correctSide)}</div>
+          <div class="rhook">${escapeHtml(it.term.hook)}</div>
+          <div class="rmark">
+            <button class="btn critical" data-mark="0">Missed it</button>
+            <button class="btn good" data-mark="1">Had it</button>
+          </div>
+        </div>`;
+      }).join("")}
+      </div>
+      <div class="stage-actions"><button class="btn" id="testNewBtn2">New test</button></div>
+    `;
+    document.getElementById("testNewBtn2").addEventListener("click", newWrittenTest);
+    wrap.querySelectorAll(".review-row").forEach(row=>{
+      const n = parseInt(row.dataset.n,10);
+      row.querySelectorAll("button[data-mark]").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const good = btn.dataset.mark==="1";
+          testResults[n] = good;
+          setBox(n, good ? getBox(n)+1 : 0);
+          row.querySelectorAll("button[data-mark]").forEach(b=>b.disabled=true);
+          btn.classList.add(good?"marked-good":"marked-bad");
+          document.getElementById("testScoreLabel").innerHTML = testScoreLabel();
+        });
+      });
+    });
+  }
+}
+
+let matchLeft = null;
+let matchRight = null;
+let matchPairs = {};
+let matchSelected = null;
+let matchGraded = false;
+function newMatchingTest(){
+  const pool = practicePool();
+  matchLeft = shuffled(pool).map((t,i)=>({num:i+1, term:t}));
+  matchRight = shuffled(pool).map((t,i)=>({letter:String.fromCharCode(65+i), term:t}));
+  matchPairs = {};
+  matchSelected = null;
+  matchGraded = false;
+  renderMatchingTest();
+}
+function tryPair(leftNum, rightLetter){
+  Object.keys(matchPairs).forEach(k=>{ if(matchPairs[k]===rightLetter) delete matchPairs[k]; });
+  matchPairs[leftNum] = rightLetter;
+  matchSelected = null;
+}
+function matchScoreLabel(){
+  const total = matchLeft.length;
+  if(!matchGraded) return `${Object.keys(matchPairs).length}/${total} paired`;
+  let correct = 0;
+  matchLeft.forEach(l=>{
+    const rightForThisTerm = matchRight.find(r=>r.term.n===l.term.n);
+    if(matchPairs[l.num] === rightForThisTerm.letter) correct++;
+  });
+  return `${correct}/${total} correct`;
+}
+function renderMatchingTest(){
+  const wrap = document.getElementById("testStage");
+  if(!matchLeft){ newMatchingTest(); return; }
+  const rightLetterToNum = {};
+  Object.keys(matchPairs).forEach(num=>{ rightLetterToNum[matchPairs[num]] = num; });
+  wrap.innerHTML = `
+    <div class="stage-top">
+      <span class="stage-topic">${matchLeft.length} pairs &middot; ${testScopeLabel(matchLeft.map(l=>l.term))}</span>
+      <div class="stage-top-actions">
+        <button class="btn" id="matchNewBtn">New matching test</button>
+        <button class="btn" id="matchPrintBtn">Print blank copy</button>
+      </div>
+    </div>
+    <p class="match-status">Match each term to its correct definition &mdash; write the letter next to the number, or click to pair them on screen.</p>
+    <p class="match-status no-print">${matchGraded ? "" : "Click a term, then click its matching definition to pair them. Click a pair again to redo it."} <strong>${matchScoreLabel()}</strong></p>
+    <div class="match-board">
+      <div>
+        <div class="match-col-label">Terms</div>
+        <div class="match-list" id="matchLeftList">
+        ${matchLeft.map(l=>{
+          const paired = matchPairs[l.num];
+          let cls = "match-item";
+          if(!matchGraded && matchSelected && matchSelected.side==="left" && matchSelected.id===l.num) cls += " selecting";
+          if(!matchGraded && paired) cls += " paired";
+          if(matchGraded){
+            const rightForThisTerm = matchRight.find(r=>r.term.n===l.term.n);
+            cls += (paired===rightForThisTerm.letter) ? " correct" : " incorrect";
+          }
+          return `<button class="${cls}" data-side="left" data-id="${l.num}" ${matchGraded?"disabled":""}>
+            <span class="mid">${l.num}</span>${escapeHtml(l.term.term)}
+            ${paired?`<span class="badge">&harr; ${paired}</span>`:""}
+          </button>`;
+        }).join("")}
+        </div>
+      </div>
+      <div>
+        <div class="match-col-label">Definitions</div>
+        <div class="match-list" id="matchRightList">
+        ${matchRight.map(r=>{
+          const pairedNum = rightLetterToNum[r.letter];
+          let cls = "match-item";
+          if(!matchGraded && matchSelected && matchSelected.side==="right" && matchSelected.id===r.letter) cls += " selecting";
+          if(!matchGraded && pairedNum) cls += " paired";
+          if(matchGraded){
+            const correctNum = matchLeft.find(l=>l.term.n===r.term.n).num;
+            cls += (pairedNum==correctNum) ? " correct" : " incorrect";
+          }
+          return `<button class="${cls}" data-side="right" data-id="${r.letter}" ${matchGraded?"disabled":""}>
+            <span class="mid">${r.letter}</span>${escapeHtml(r.term.def)}
+            ${pairedNum?`<span class="badge">&harr; ${pairedNum}</span>`:""}
+          </button>`;
+        }).join("")}
+        </div>
+      </div>
+    </div>
+    <div class="stage-actions">
+      ${matchGraded ? "" : `<button class="btn primary" id="matchGradeBtn">Grade my matches</button>`}
+    </div>
+  `;
+  document.getElementById("matchNewBtn").addEventListener("click", newMatchingTest);
+  document.getElementById("matchPrintBtn").addEventListener("click", ()=>{ window.print(); });
+  if(!matchGraded){
+    wrap.querySelectorAll(".match-item").forEach(el=>{
+      el.addEventListener("click", ()=>{
+        const side = el.dataset.side;
+        const id = side==="left" ? parseInt(el.dataset.id,10) : el.dataset.id;
+        if(matchSelected && matchSelected.side!==side){
+          if(side==="left") tryPair(id, matchSelected.id);
+          else tryPair(matchSelected.id, id);
+        } else if(matchSelected && matchSelected.side===side && matchSelected.id===id){
+          matchSelected = null;
+        } else {
+          matchSelected = {side, id};
+        }
+        renderMatchingTest();
+      });
+    });
+    const gradeBtn = document.getElementById("matchGradeBtn");
+    if(gradeBtn) gradeBtn.addEventListener("click", ()=>{
+      matchGraded = true;
+      matchLeft.forEach(l=>{
+        const rightForThisTerm = matchRight.find(r=>r.term.n===l.term.n);
+        const correct = matchPairs[l.num] === rightForThisTerm.letter;
+        setBox(l.term.n, correct ? getBox(l.term.n)+1 : 0);
+      });
+      renderMatchingTest();
+    });
+  }
+}
+
+function renderTest(){
+  document.getElementById("testHeading").textContent = state.testType==="matching" ? "Test mode — Matching" : "Test mode — Written";
+  document.getElementById("testDesc").textContent = state.testType==="matching"
+    ? "Term-to-definition matching, like a real matching quiz. Pair every term, then grade yourself."
+    : "Write every answer before you see any of them, then grade yourself at the end.";
+  const inline = document.getElementById("testTypeInline");
+  const typeOpts = [{v:"written",l:"Written test"},{v:"matching",l:"Matching test"}];
+  inline.innerHTML = typeOpts.map(o=>`<button class="${state.testType===o.v?'active':''}" data-v="${o.v}">${o.l}</button>`).join("");
+  inline.querySelectorAll("button").forEach(b=>{
+    b.addEventListener("click", ()=>{ state.testType=b.dataset.v; resetTestState(); render(); });
+  });
+  if(state.testType==="matching") renderMatchingTest();
+  else renderWrittenTest();
+}
+
+function renderPrint(){
+  const pool = termsForQuiz(state.quizFilter).slice().sort((a,b)=>a.n-b.n);
+  const label = state.quizFilter==="all" ? "All terms" : `Quiz ${state.quizFilter} — due ${state.quizFilter==="1"?"Wed 9/2":"Fri 9/4"}`;
+  document.getElementById("printSheetContent").innerHTML = `
+    <h3 class="print-sheet-title">${label} &middot; ${pool.length} terms</h3>
+    <div class="print-grid">
+    ${pool.map(t=>`
+      <div class="print-term">
+        <div class="pt-tag">${t.topic}.${t.n}</div>
+        <div class="pt-name">${escapeHtml(t.term)}</div>
+        <div class="pt-def">${escapeHtml(t.def)}</div>
+        <div class="pt-hook">${escapeHtml(t.hook)}</div>
+      </div>
+    `).join("")}
+    </div>
+  `;
+  const btn = document.getElementById("printSheetBtn");
+  btn.onclick = ()=>{ window.print(); };
+}
+
+function renderProgress(){
+  const pool = termsForQuiz(state.quizFilter);
+  const mastered = pool.filter(t=>getBox(t.n)>=4).length;
+  const shaky = pool.filter(t=>getBox(t.n)>0 && getBox(t.n)<3).length;
+  const untouched = pool.filter(t=>!progress[t.n]).length;
+  document.getElementById("statRow").innerHTML = `
+    <div class="stat"><div class="num mono">${pool.length}</div><div class="lbl">Total terms</div></div>
+    <div class="stat"><div class="num mono">${mastered}</div><div class="lbl">Mastered</div></div>
+    <div class="stat"><div class="num mono">${shaky}</div><div class="lbl">Still shaky</div></div>
+    <div class="stat"><div class="num mono">${untouched}</div><div class="lbl">Not started</div></div>
+  `;
+  const tf = topicsForQuiz(state.quizFilter);
+  document.getElementById("progressRows").innerHTML = tf.map(t=>{
+    const terms = TERMS.filter(x=>x.topic===t.code);
+    const avg = terms.reduce((s,x)=>s+getBox(x.n),0) / (terms.length*4);
+    return `<div class="prow">
+      <div class="name"><span class="code">${t.code}</span>${t.name}</div>
+      <div class="contour-track"><div class="contour-fill" style="width:${Math.round(avg*100)}%"></div></div>
+      <div class="pct mono">${Math.round(avg*100)}%</div>
+    </div>`;
+  }).join("");
+  const weak = pool.filter(t=>getBox(t.n)<2).sort((a,b)=>a.n-b.n);
+  document.getElementById("weakList").innerHTML = weak.length ? weak.map(t=>`
+    <details class="weak-item">
+      <summary><span class="tag">${t.topic}.${t.n}</span>${escapeHtml(t.term)}<span class="box">box ${getBox(t.n)}</span></summary>
+      <div class="body">
+        <p>${escapeHtml(t.def)}</p>
+        <p class="hook">${escapeHtml(t.hook)}</p>
+      </div>
+    </details>
+  `).join("") : `<p style="color:var(--contour);font-size:.86rem;">Nothing flagged yet — do a Recall or Drill session first.</p>`;
+
+  function levelDots(box){
+    let out = '<span class="level-dots">';
+    for(let i=0;i<4;i++) out += `<span${i<box?' class="filled"':''}></span>`;
+    return out + '</span>';
+  }
+  const allTermsListEl = document.getElementById("allTermsList");
+  const openNs = new Set([...allTermsListEl.querySelectorAll("details[open]")].map(d=>d.dataset.n));
+  const allSorted = pool.slice().sort((a,b)=>a.n-b.n);
+  allTermsListEl.innerHTML = allSorted.map(t=>`
+    <details class="weak-item" data-n="${t.n}"${openNs.has(String(t.n))?" open":""}>
+      <summary><span class="tag">${t.topic}.${t.n}</span>${escapeHtml(t.term)}${levelDots(getBox(t.n))}</summary>
+      <div class="body">
+        <p>${escapeHtml(t.def)}</p>
+        <p class="hook">${escapeHtml(t.hook)}</p>
+        <div class="adjust-row">
+          <button data-adjust="-1" data-n="${t.n}">&minus; Less confident</button>
+          <button data-adjust="1" data-n="${t.n}">&plus; More confident</button>
+        </div>
+      </div>
+    </details>
+  `).join("");
+  allTermsListEl.querySelectorAll("button[data-adjust]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.preventDefault();
+      const n = parseInt(btn.dataset.n,10);
+      const delta = parseInt(btn.dataset.adjust,10);
+      setBox(n, getBox(n)+delta);
+      renderProgress();
+    });
+  });
+
+  document.getElementById("resetProgressBtn").addEventListener("click", ()=>{
+    const ok = window.confirm ? window.confirm("Reset ALL progress across every quiz and mode? This can't be undone.") : true;
+    if(!ok) return;
+    progress = {};
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+    render();
+  });
+}
+
+function render(){
+  renderRail();
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("panel-"+state.mode).classList.add("active");
+  if(state.mode==="plan") renderPlan();
+  if(state.mode==="learn") renderLearn();
+  if(state.mode==="recall") renderRecall();
+  if(state.mode==="drill") renderDrill();
+  if(state.mode==="test") renderTest();
+  if(state.mode==="print") renderPrint();
+  if(state.mode==="progress") renderProgress();
+}
+render();
+</script>
